@@ -1,0 +1,53 @@
+{
+    "Role": "arn:aws:iam::id:role/s3_repl_on_multiple_buckets",
+    "Rules": [
+        {
+            "ID": "repl_to_east_b",
+            "Priority": 0,
+            "Filter": { "Prefix": ""},
+            "Status": "Enabled",
+            "Destination": {
+                "Bucket": "arn:aws:s3:::BucketB",
+                "ReplicationTime": {
+                  "Status": "Enabled",
+                  "Time" : {
+                    "Minutes": 15
+                  }
+                },
+                "Metrics": {
+                    "Status": "Enabled",
+                    "EventThreshold": {
+                      "Minutes": 15
+                    }
+                }
+            },
+            "DeleteMarkerReplication": {
+                "Status": "Disabled"
+            }
+        },
+        {
+            "ID": "repl_to_west_c",
+            "Priority": 1,
+            "Filter": { "Prefix": ""},
+            "Status": "Enabled",
+            "Destination": {
+                "Bucket": "arn:aws:s3:::BucketC",
+                "ReplicationTime": {
+                  "Status": "Enabled",
+                  "Time" : {
+                    "Minutes": 15
+                  }
+                },                
+                "Metrics": {
+                    "Status": "Enabled",
+                    "EventThreshold": {
+                      "Minutes": 15
+                    }                      
+                }
+            },
+            "DeleteMarkerReplication": {
+                "Status": "Disabled"
+            }
+        }
+    ]
+}
